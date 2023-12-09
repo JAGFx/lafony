@@ -43,12 +43,14 @@ test\:integration:
 	@bin/php bin/phpunit tests/Integration
 
 lint:
-	@bin/php php-cs-fixer fix --using-cache=no --diff
-	@bin/php vendor/bin/phpstan analyse --xdebug -n src
-	@bin/php vendor/bin/rector process src --xdebug
-	@bin/php ./vendor/bin/psalm
-	@bin/php vendor/bin/phpcpd src
-	@npm run lint
+	@bin/php vendor/bin/pint -v
+	@bin/php vendor/bin/phpstan analyse --xdebug
+	@bin/php vendor/bin/rector process --xdebug
+#	@bin/php ./vendor/bin/psalm
+#	@bin/php vendor/bin/phpcpd src
+#	@npm run lint
 
 ci: lint test
 # -- End Code linter & test (CI)
+
+# TODO: Continue here: Add linters for Laravel

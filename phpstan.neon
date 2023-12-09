@@ -1,0 +1,22 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: max
+    parallel:
+        jobSize: 20
+        maximumNumberOfProcesses: 32
+        minimumNumberOfJobsPerProcess: 2
+    paths:
+        - app
+        - config
+        - database
+        - routes
+        - tests
+    excludePaths:
+        - config
+        - routes/console.php
+    ignoreErrors:
+    checkGenericClassInNonGenericObjectType: false
+    reportUnmatchedIgnoredErrors: false
+    checkMissingIterableValueType: false

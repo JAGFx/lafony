@@ -12,13 +12,18 @@
         "laravel/tinker": "^2.8"
     },
     "require-dev": {
+        "driftingly/rector-laravel": "^0.26.2",
         "fakerphp/faker": "^1.9.1",
+        "larastan/larastan": "^2.7",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.1",
-        "spatie/laravel-ignition": "^2.0"
+        "psalm/plugin-laravel": "^2.8",
+        "rector/rector": "^0.18.12",
+        "spatie/laravel-ignition": "^2.0",
+        "vimeo/psalm": "^5.17"
     },
     "autoload": {
         "psr-4": {
