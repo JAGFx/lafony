@@ -42,7 +42,7 @@ test\:feature:
 
 lint:
 	@bin/php vendor/bin/pint -v
-	@bin/php vendor/bin/phpstan analyse --xdebug
+	@bin/php vendor/bin/phpstan analyse
 	@bin/php vendor/bin/rector process --xdebug
 #	@bin/php ./vendor/bin/psalm
 #	@bin/php vendor/bin/phpcpd src
