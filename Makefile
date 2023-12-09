@@ -14,33 +14,31 @@ build: stop
 
 db: start
 	@sleep 1s
-	@bin/php php artisan db:wipe
-	@bin/php php artisan migrate
+	@bin/artisan db:wipe
+	@bin/artisan migrate
 
 db\:test: start
 	@sleep 1s
-	@bin/php bin/console d:d:d -f --if-exists --env=test
-	@bin/php bin/console d:d:c --env=test
-	@bin/php bin/console d:m:m -n --env=test
-	@bin/php bin/console h:f:l -n --purge-with-truncate --env=test
+	@bin/artisan db:wipe --env=test
+	@bin/artisan migrate --env=test
 
 install: start db
 	@sleep 1s
-	@bin/php composer install
+	@bin/composer install
 	@npm i
 
 fixture: db
-	@bin/php php artisan db:seed
+	@bin/artisan db:seed
 # -- End Environment
 
 # -- Start Code linter & test (CI)
-test: db\:test test\:unit test\:integration
+test: db\:test test\:unit test\:feature
 
 test\:unit:
-	@bin/php bin/phpunit tests/Unit
+	@bin/php vendor/bin/phpunit tests/Unit
 
-test\:integration:
-	@bin/php bin/phpunit tests/Integration
+test\:feature:
+	@bin/php vendor/bin/phpunit tests/Feature
 
 lint:
 	@bin/php vendor/bin/pint -v
@@ -52,5 +50,3 @@ lint:
 
 ci: lint test
 # -- End Code linter & test (CI)
-
-# TODO: Continue here: Add linters for Laravel
