@@ -1,3 +1,8 @@
+SHELL=/bin/bash
+
+CURRENT_UID := $(shell id -u)
+CURRENT_GID := $(shell id -g)
+
 # -- Start Docker
 start:
 	@docker compose up -d
@@ -22,13 +27,18 @@ db\:test: start
 	@bin/artisan db:wipe --env=test
 	@bin/artisan migrate --env=test
 
-install: start db
+install: start db rights
 	@sleep 1s
 	@bin/composer install
 	@npm i
 
 fixture: db
 	@bin/artisan db:seed
+
+rights: start
+	@sudo chmod -R 777 storage
+	@sudo chmod -R 777 bootstrap/cache
+	@sudo chown -R ${CURRENT_UID}:${CURRENT_GID} ./
 # -- End Environment
 
 # -- Start Code linter & test (CI)
@@ -47,6 +57,8 @@ lint:
 #	@bin/php ./vendor/bin/psalm
 #	@bin/php vendor/bin/phpcpd src
 #	@npm run lint
+	@make rights
 
 ci: lint test
+	@make rights
 # -- End Code linter & test (CI)
