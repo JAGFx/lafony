@@ -1,0 +1,7 @@
+#!/bin/bash
+# 	-u $(id -u ${USER}):$(id -g ${USER}) \
+
+docker run --rm  \
+	-v "$(pwd):/var/www/laravel/" \
+	--network=lafony_app_network \
+	lafony-php:latest $@
