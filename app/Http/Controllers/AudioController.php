@@ -6,13 +6,13 @@ use App\Http\Requests\StoreAudioRequest;
 use App\Http\Requests\UpdateAudioRequest;
 use App\Models\Audio;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\View as ViewFacade;
+use Illuminate\Support\Facades as Facades;
 
 class AudioController extends Controller
 {
     public function index(): View
     {
-        return ViewFacade::make('audios/index', [
+        return Facades\View::make('audios/index', [
             'audios' => Audio::all(),
         ]);
     }
