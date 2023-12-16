@@ -15,6 +15,9 @@ restart: stop start
 
 # -- Start Environment
 build: stop
+	@docker compose build --pull
+
+build\:no-cache: stop
 	@docker compose build --pull --no-cache
 
 db: start

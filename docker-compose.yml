@@ -22,11 +22,12 @@ services:
       - app_network
 
   db:
-    image: mysql:8
+    image: lafony-mysql:latest
+    build:
+      context: ./docker/mysql
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: noPassword
-      MYSQL_DATABASE: lafony
     volumes:
       - db-data:/var/lib/mysql
     ports:
