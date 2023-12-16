@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-include __DIR__ . '/domain/audio.php';
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,5 +14,15 @@ include __DIR__ . '/domain/audio.php';
 */
 
 Route::get('/', static function () {
-    return view('common/template/index');
-})->name('home');
+    return redirect(app()->getLocale());
+});
+
+Route::prefix('{locale}')
+    ->where(['locale' => '[a-zA-Z]{2}'])
+    ->middleware('setlocale')
+    ->group(static function () {
+        Route::get('/', static function () {
+            return view('common/template/index');
+        })->name('home');
+        require __DIR__ . '/domain/audio.php';
+    });

@@ -1,5 +1,5 @@
 @extends('common/template/base')
 
 @section('body')
-    Nothing here
+    {{__('messages.common.label.nothing_here') }}
 @endsection
