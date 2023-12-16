@@ -12,7 +12,7 @@ class AudioController extends Controller
 {
     public function index(): View
     {
-        return Facades\View::make('audios/index', [
+        return Facades\View::make('domain/audios/index', [
             'audios' => Audio::all(),
         ]);
     }

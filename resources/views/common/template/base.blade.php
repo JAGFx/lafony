@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{{ env('APP_NAME', 'Unicorn')  }}</title>
+    </head>
+    <body>
+        @include('common/organism/_menu')
+        @yield('body')
+        <footer>
+            Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+        </footer>
+    </body>
+</html>

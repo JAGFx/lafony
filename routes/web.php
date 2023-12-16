@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-include __DIR__ . '/audio.php';
+include __DIR__ . '/domain/audio.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +16,5 @@ include __DIR__ . '/audio.php';
 */
 
 Route::get('/', static function () {
-    return view('welcome');
-});
+    return view('common/template/index');
+})->name('home');
