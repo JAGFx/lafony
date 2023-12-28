@@ -66,8 +66,12 @@ jobs:
           with:
             path: ./*
             key: ${{ github.sha }}
-      -   name: Run linter
-          run: make lint
+      -   name: Run Laravel pint
+          run: php vendor/bin/pint -v
+      -   name: Run PHPStan
+          run: php vendor/bin/phpstan analyse
+      -   name: Run Rector
+          run: php vendor/bin/rector process --xdebug
 
   unit_test:
     name: Unit test
@@ -90,4 +94,4 @@ jobs:
             path: ./*
             key: ${{ github.sha }}
       -   name: Run unit test
-          run: make test:unit
+          run: php vendor/bin/phpunit tests/Unit
