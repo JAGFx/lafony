@@ -8,9 +8,6 @@ jobs:
   install:
     name: Install
     runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        node-version: [ 18.x ]
     container:
       image: ghcr.io/jagfx/lafony-php:ci
     steps:
@@ -18,10 +15,6 @@ jobs:
           uses: actions/checkout@v3
           with:
             fetch-depth: 2
-#      -   run: git checkout HEAD^2
-#          if: ${{ github.event_name == 'pull_request' }}
-#      -   name: Configure environment
-#          run: make env
       -   name: Read .nvmrc
           run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
           id: nvm
@@ -29,12 +22,6 @@ jobs:
           uses: actions/setup-node@v1
           with:
             node-version: "${{ steps.nvm.outputs.NVMRC }}"
-#          script: |
-#            export NVM_DIR=~/.nvm
-#            source ~/.nvm/nvm.sh
-#            npm --help
-#          with:
-#            node-version: ${{ matrix.node-version }}
       -   name: Install composer dependencies
           run: composer install
       -   name: Install nodejs dependencies
@@ -57,10 +44,6 @@ jobs:
           uses: actions/checkout@v3
           with:
             fetch-depth: 2
-#      -   name: Use Node.js ${{ matrix.node-version }}
-#          uses: actions/setup-node@v3
-#          with:
-#            node-version: ${{ matrix.node-version }}
       -   uses: actions/cache@v3
           id: restore-build
           with:
@@ -84,10 +67,6 @@ jobs:
           uses: actions/checkout@v3
           with:
             fetch-depth: 2
-#      -   name: Use Node.js ${{ matrix.node-version }}
-#          uses: actions/setup-node@v3
-#          with:
-#            node-version: ${{ matrix.node-version }}
       -   uses: actions/cache@v3
           id: restore-build
           with:
