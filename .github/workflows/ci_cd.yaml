@@ -23,11 +23,12 @@ jobs:
 #      -   name: Configure environment
 #          run: make env
       -   name: Read .nvmrc
-          run: NVMRC=$(cat .nvmrc)
-      -   name: Use Node.js
-          uses: actions/setup-node@v3
+          run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+          id: nvm
+      -   name: Use Node.js (.nvmrc)
+          uses: actions/setup-node@v1
           with:
-            node-version: ${NVMRC}
+            node-version: "${{ steps.nvm.outputs.NVMRC }}"
 #          script: |
 #            export NVM_DIR=~/.nvm
 #            source ~/.nvm/nvm.sh
