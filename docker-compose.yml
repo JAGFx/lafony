@@ -2,7 +2,7 @@ version: '3'
 
 services:
   php:
-    image: lafony-php:latest
+    image: ghcr.io/jagfx/lafony-php:ci
     build:
       context: ./docker/php
     volumes:
@@ -11,7 +11,7 @@ services:
       - app_network
 
   nginx:
-    image: lafony-nginx:latest
+    image: ghcr.io/jagfx/lafony-nginx:ci
     build:
       context: ./docker/nginx
     volumes:
@@ -22,7 +22,7 @@ services:
       - app_network
 
   db:
-    image: lafony-mysql:latest
+    image: ghcr.io/jagfx/lafony-mysql:ci
     build:
       context: ./docker/mysql
     command: --default-authentication-plugin=mysql_native_password

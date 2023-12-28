@@ -20,6 +20,10 @@ build: stop
 build\:no-cache: stop
 	@docker compose build --pull --no-cache
 
+build\:ci: build\:no-cache
+	@docker login ghcr.io -u jagfx -p ${GH_TOKEN}
+	@docker push ghcr.io/jagfx/lafony-php:ci
+
 db: start
 	@sleep 1s
 	@bin/artisan db:wipe

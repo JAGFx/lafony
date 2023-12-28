@@ -1,4 +1,5 @@
 FROM php:8.3-fpm
+LABEL org.opencontainers.image.source=https://github.com/JAGFx/lafony
 
 COPY php.ini /usr/local/etc/php/conf.d/docker-php-config.ini
 
