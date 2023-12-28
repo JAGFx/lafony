@@ -14,10 +14,10 @@ jobs:
     container:
       image: ghcr.io/jagfx/lafony-php:ci
     steps:
-#      -   name: Checkout repository
-#          uses: actions/checkout@v3
-#          with:
-#            fetch-depth: 2
+      -   name: Checkout repository
+          uses: actions/checkout@v3
+          with:
+            fetch-depth: 2
 #      -   run: git checkout HEAD^2
 #          if: ${{ github.event_name == 'pull_request' }}
 #      -   name: Configure environment
@@ -44,10 +44,10 @@ jobs:
     container:
       image: ghcr.io/jagfx/lafony-php:ci
     steps:
-#      -   name: Checkout repository
-#          uses: actions/checkout@v3
-#          with:
-#            fetch-depth: 2
+      -   name: Checkout repository
+          uses: actions/checkout@v3
+          with:
+            fetch-depth: 2
 #      -   name: Use Node.js ${{ matrix.node-version }}
 #          uses: actions/setup-node@v3
 #          with:
@@ -67,10 +67,10 @@ jobs:
     container:
       image: ghcr.io/jagfx/lafony-php:ci
     steps:
-#      -   name: Checkout repository
-#          uses: actions/checkout@v3
-#          with:
-#            fetch-depth: 2
+      -   name: Checkout repository
+          uses: actions/checkout@v3
+          with:
+            fetch-depth: 2
 #      -   name: Use Node.js ${{ matrix.node-version }}
 #          uses: actions/setup-node@v3
 #          with:
