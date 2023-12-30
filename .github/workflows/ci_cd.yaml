@@ -103,8 +103,8 @@ jobs:
         with:
           path: ./*
           key: ${{ github.sha }}
-#      - name: Wipe test database
-#        run: php artisan db:wipe --env=test
+      - name: Wipe test database
+        run: php artisan db:wipe --env=test
       - name: Run migration into test database
         run: php artisan migrate --env=test
       - name: Run functional test
