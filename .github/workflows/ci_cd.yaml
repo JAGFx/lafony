@@ -82,10 +82,11 @@ jobs:
     container:
       image: ghcr.io/jagfx/lafony-php:ci
     services:
-      lafony_test:
+      db:
         image: ghcr.io/jagfx/lafony-mysql:ci
         env:
           MYSQL_ROOT_PASSWORD: noPassword
+          MYSQL_DATABASE: lafony_test
 #        options: >-
 #          --default-authentication-plugin mysql_native_password
     steps:
