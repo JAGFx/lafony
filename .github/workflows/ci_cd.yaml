@@ -56,7 +56,7 @@ jobs:
       -   name: Run Rector
           run: php vendor/bin/rector process --xdebug
 
-  unit_test:
+  test_unit:
     name: Unit test
     runs-on: ubuntu-latest
     needs: [install]
@@ -74,3 +74,36 @@ jobs:
             key: ${{ github.sha }}
       -   name: Run unit test
           run: php vendor/bin/phpunit tests/Unit
+
+  test_functional:
+    name: Functional test
+    runs-on: ubuntu-latest
+    needs: [ install ]
+    container:
+      image: ghcr.io/jagfx/lafony-php:ci
+    services:
+      mysql:
+        image: ghcr.io/jagfx/lafony-mysql:ci
+        env:
+          MYSQL_ROOT_PASSWORD: noPassword
+        options: >-
+          --default-authentication-plugin mysql_native_password
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - uses: actions/cache@v3
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - name: Wipe test database
+        run: php artisan db:wipe --env=test
+      - name: Run migration into test database
+        run: php artisan migrate --env=test
+      - name: Run functional test
+        run: php vendor/bin/phpunit tests/Feature
+
+#  TODO: Continue here: Setup run for TU
+# > https://docs.github.com/en/actions/using-containerized-services/creating-postgresql-service-containers

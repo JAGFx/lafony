@@ -23,6 +23,7 @@ build\:no-cache: stop
 build\:ci: build\:no-cache
 	@docker login ghcr.io -u jagfx -p ${GH_TOKEN}
 	@docker push ghcr.io/jagfx/lafony-php:ci
+	@docker push ghcr.io/jagfx/lafony-mysql:ci
 
 db: start
 	@sleep 1s
