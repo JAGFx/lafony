@@ -82,7 +82,7 @@ jobs:
     container:
       image: ghcr.io/jagfx/lafony-php:ci
     services:
-      mysql:
+      lafony_test:
         image: ghcr.io/jagfx/lafony-mysql:ci
         env:
           MYSQL_ROOT_PASSWORD: noPassword
