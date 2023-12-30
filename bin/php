@@ -4,4 +4,4 @@
 docker run -i --rm  \
 	-v "$(pwd):/var/www/laravel/" \
 	--network=lafony_app_network \
-	lafony-php:latest php $@
+	ghcr.io/jagfx/lafony-php:ci php $@
